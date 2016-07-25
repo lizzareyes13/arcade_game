@@ -75,7 +75,7 @@ Player.prototype.update = function() {
   if (this.checkCollisions(allEnemies[0])){
     this.x = 200;
     this.y = 400;
-    
+
   }
 };
 

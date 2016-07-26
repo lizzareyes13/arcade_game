@@ -1,5 +1,8 @@
+import Engine from "./engine.js"
+
+
 // Enemies our player must avoid
-class Enemy {
+/*class Enemy {
   constructor(x,y,speed) {
     this.x = x;
     this.y = y;
@@ -35,7 +38,7 @@ class Enemy {
     }
   }
 
-}
+} */
 class Player {
   constructor(x,y) {
     this.x = x;
@@ -111,6 +114,49 @@ class Player {
   }
 }
 
+class Enemy {
+  constructor(x,y,speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.sprite = 'images/enemy-bug.png'
+
+  }
+  render () {
+      ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+
+    if (this.speed < 0){
+      ctx.save();
+      ctx.translate(this.x + 50,0);
+      ctx.scale(-1,1);
+      ctx.translate(-this.x - 50, 0);
+      ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+      ctx.restore();
+
+
+
+      }
+      else{
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+      }
+
+  }
+
+
+
+  update (dt) {
+    this.x += this.speed *dt;
+    if (this.x < 0){
+      this.x = 500;
+    }
+    if (this.x > 500){
+      this.x = 0;
+    }
+  }
+
+}
+
 // Now instantiate your objects.
 var player = new Player(0,0);
 // Place all enemy objects in an array called allEnemies
@@ -139,3 +185,5 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+Engine(window);

@@ -13,8 +13,10 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
-var Engine = (function(global) {
+import Player from `./Player.js`;
+//import Gem from `./Gem.js`;
+import {allEnemies} from `./app.js`;
+export default function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -181,4 +183,4 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
-})(this);
+}
